@@ -1,7 +1,11 @@
 
 const numbers = document.querySelectorAll('.numbers');
 const button = document.querySelector('#btn');
-const card2 = document.querySelector('#card2');
+const card = document.querySelector('.card');
+const card2 = document.querySelector('.card2');
+const selectedSpan = document.querySelector('#selected-number');
+
+
 let prevClicked = null;
 
 numbers.forEach((number) => {
@@ -16,21 +20,18 @@ numbers.forEach((number) => {
     // Set the current clicked button to the previous clicked button
     prevClicked = event.target;
 
-    console.log('number is pressed');
 
   })
 })
 
-// Hover effect for non-clicked buttons
-numbers.addEventListener("mouseover", (event) => {
-    if (event.target !== prevClicked) {
-        event.target.style.backgroundColor = "#ff9e37"
-    }
+// Event Listener for the button
+
+button.addEventListener('click', () => {
+  if (prevClicked) {
+    card.classList.remove('active');  // hide the rating card
+    card2.classList.add('active');  // show the thank you card
+    selectedSpan.innerHTML = prevClicked.innerHTML;  // Set the selected number
+  } else {
+    alert('Please select a number');
+  }
 });
-
-// event listener for button
-button.addEventListener("click", () => {
-    console.log('button is pressed');
-});
-
-
